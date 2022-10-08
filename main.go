@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 func main() {
 
@@ -33,14 +36,40 @@ func main() {
 
 		fmt.Println("Enter number of tickets:")
 		fmt.Scan(&userTickets)
+		if userTickets > ticketsAvailable {
+			fmt.Printf("We only have %v tickets remaining , so you can't book %v tickets.\nTry again\n", ticketsAvailable, userTickets)
+			continue
+		}
 
-		bookings = append(bookings, firstName+""+lastName)
+		bookings = append(bookings, firstName+" "+lastName)
 		ticketsAvailable = ticketsAvailable - userTickets
 
 		fmt.Printf("Thank you %v %v for booking %v tickets. You will recieve a confirmation email at %v.\n", firstName, lastName, userTickets, email)
+		fmt.Println(bookings)
+
+		/*for initialization; condition; update {
+					statement(s)
+				  }.
+		The initialization initializes and/or declares variables and is executed only once.
+		Then, the condition is evaluated. If the condition is true, the body of the for loop is executed.
+		The update updates the value of initialization.
+		The condition is evaluated again. The process continues until the condition is false.
+		If the condition is false, the for loop ends*/
+
+		firstNames := []string{}
+		for _, booking := range bookings {
+			var names = strings.Fields(booking)       //string.Fields split strings eg. sameer sheikh = "sameer" "sheikh"
+			firstNames = append(firstNames, names[0]) //name holding value eg. "sameer" "sheikh" so name[0] at index 0 we have value sameer
+		}
+		// above we defined an slice of strings(firstNames) and looped through BOOKINGS for both its index and value using the for..range keyword
+
+		if ticketsAvailable == 0 {
+			fmt.Println("The tickets are all sold out. Come back next year.")
+			break
+		}
 
 		fmt.Printf("%v tickets remaining for Go Conference.\n", ticketsAvailable)
-		fmt.Printf("%v bookings\n", bookings)
+		fmt.Printf("The first name of bookings are %v\n", firstNames)
 	}
 
 }
