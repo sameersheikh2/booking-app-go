@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"net/http"
 	"strconv"
 	"strings"
 )
@@ -14,6 +15,13 @@ var ticketsAvailable uint = 50 //uint var type allow only positive number
 var bookings = make([]map[string]string, 0) //map["key data type"]value data type;=syntax;; here we created list of maps inside list of slice thus []map[string]string, 0, where first [] impies empty slice and map[]string means slice of maps
 
 func main() {
+
+	res, err := http.Get("http://fakestoreapi.com/products")
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(res)
+	res.Body.Close()
 
 	//assign variable wihtout datatype because go will automatically understand data type by looking at value assign
 
