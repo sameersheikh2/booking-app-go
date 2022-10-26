@@ -15,3 +15,36 @@ if err != nil {
 	// handle error
 }
 defer resp.Body.Close()
+
+
+// func main() {
+// 	fmt.Println("konichiwa")
+// 	http.HandleFunc("/hello", func(w http.ResponseWriter, r *http.Request) { w.Write([]byte("hello world")) })
+
+// 	http.ListenAndServe(":5050", nil)
+// }
+
+The first argument to the indexHandler function is a value of the type http.ResponseWriter. This is the mechanism used for sending responses to any connected HTTP clients. It's also how response headers are set. The second argument is a pointer to an http.Request. It's how data is retrieved from the web request. For example, the details from a form submission can be accessed through the request pointer.
+
+
+**Declaring Arrays
+To declare an array in Go, a programmer specifies the type of the elements and the number of elements required by an array as follows −
+
+var variable_name [SIZE] variable_type
+This is called a single-dimensional array. The arraySize must be an integer constant greater than zero and type can be any valid Go data type. For example, to declare a 10-element array called balance of type float32, use this statement −
+
+var balance [10] float32
+
+Initializing Arrays
+You can initialize array in Go either one by one or using a single statement as follows −
+
+var balance = [5]float32{1000.0, 2.0, 3.4, 7.0, 50.0}
+
+Go Array allows you to define variables that can hold several data items of the same kind but it does not provide any inbuilt method to increase its size dynamically or get a sub-array of its own. Slices overcome this limitation. It provides many utility functions required on Array and is widely used in Go programming.
+
+**Defining a slice
+To define a slice, you can declare it as an array without specifying its size. Alternatively, you can use make function to create a slice.
+
+var numbers []int /* a slice of unspecified size */
+
+The range keyword is used in for loop to iterate over items of an array, slice, channel or map. With array and slices, it returns the index of the item as integer. With maps, it returns the key of the next key-value pair. Range either returns one value or two
